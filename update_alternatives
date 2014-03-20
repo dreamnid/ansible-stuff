@@ -92,8 +92,9 @@ def ua_status(m,link):
         m.fail_json(msg="'update-alternatives --query %s' failed: %s" % (link, err))
         m.exit_json(changed=True)
 
-    result = re.match( r"""
+    result = re.search( r"""
         ^Link:\s+(?P<link>.+)\n
+        (.*\n)*?
         Status:\s+(?P<status>.+)\n
         Best:\s+(?P<best>.+)\n
         Value:\s+(?P<value>.+)
